@@ -8,6 +8,20 @@ def solve_part_1(inputlist : list) -> int:
     
     return inputlist[0]
 
+def solve_part_2(inputlist: list) -> int:
+
+    desired_output = 19690720
+
+    for noun in range(100):
+        for verb in range(100):
+            newlist = inputlist.copy()
+            newlist[1] = noun
+            newlist[2] = verb
+            output = solve_part_1(newlist)
+            if output == desired_output:
+                return 100*noun + verb
+
+
 def execute_opcode(inputlist: list, position: int) -> int:
     "Executes the OPCode on position p"
     op = inputlist[position]
@@ -41,6 +55,5 @@ if __name__ == "__main__":
     positions = list(map(int,positions))
     positions[1] = 12
     positions[2] = 2
-    print(positions)
-    solution = solve_part_1(positions)
+    solution = solve_part_2(positions)
     print(solution)
